@@ -2,6 +2,7 @@
 local SpottedServices = { "RunService", "TweenService", "TextService", "ContextActionService", "LocalizationService" }
 
 local FireActionClientClass = loadstring(game:HttpGet("https://raw.githubusercontent.com/soomiex/flvrd-rblx/main/Classes/FireActionClient.lua?token=GHSAT0AAAAAACAVDYTMCM5CSDWJEX4TJ6POZBJDAFA"))()
+local VariablesClass = loadstring(game:HttpGet("https://raw.githubusercontent.com/soomiex/flvrd-rblx/main/Classes/Variables.lua?token=GHSAT0AAAAAACAVDYTMWPHTO73SLGKCHAG2ZBJDDBA"))()
 
 function DoesIndexExist(_table, _index) 
     for index, _ in pairs(_table) do 
