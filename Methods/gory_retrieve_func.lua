@@ -1,21 +1,7 @@
 -- as of 4/1/2023 "AfterAllScatterClient" only scatters to the following services: 
 local SpottedServices = { "RunService", "TweenService", "TextService", "ContextActionService", "LocalizationService" }
 
-local FireActionClientClass = {}
-
-FireActionClientClass.Location = nil 
-FireActionClientClass.RequiredMetaTable = nil 
-FireActionClientClass.FunctionsInside = {"UpdateReticle", "LockedAim", "ReloadTrackStopped", "BeginReload"} -- TODO; add more function examples later 
-
-function FireActionClientClass.SetReload(NewValue) 
-    if FireActionClientClass.RequiredMetaTable == nil then 
-        warn("[FireActionClientClass] .RequiredMetaTable has not been initialized.")
-        return 
-    end
-    FireActionClientClass.reloaded = NewValue
-    print("set new reload value")
-end
-
+local FireActionClientClass = loadstring(game:HttpGet("https://raw.githubusercontent.com/soomiex/flvrd-rblx/main/Classes/FireActionClient.lua?token=GHSAT0AAAAAACAVDYTMCM5CSDWJEX4TJ6POZBJDAFA"))()
 
 function DoesIndexExist(_table, _index) 
     for index, _ in pairs(_table) do 
@@ -46,13 +32,13 @@ function FindAndInitModuleByClass(ModuleClass)
                     local requiredModule = require(b)
 
                     local totalOffsetsVerified = 0 
-                    for classIndex, classOffset in pairs(ModuleClass.FunctionsInside) do 
+                    for classIndex, classOffset in pairs(ModuleClass.IndexesInside) do 
                         if DoesIndexExist(requiredModule, classOffset) then 
                             totalOffsetsVerified = totalOffsetsVerified + 1
                         end
                     end
 
-                    if totalOffsetsVerified == #ModuleClass.FunctionsInside then 
+                    if totalOffsetsVerified == #ModuleClass.IndexesInside then 
                         ModuleClass.Location = b 
                         ModuleClass.RequiredMetaTable = requiredModule
                         print("Verified a class.") 
@@ -64,8 +50,8 @@ function FindAndInitModuleByClass(ModuleClass)
     end
 end
 
-repeat FindAndInitModuleByClass(FireActionClientClass); wait(); print("finding fireactionclass") until FireActionClientClass.RequiredMetaTable ~= nil; 
+repeat print("finding fireactionclass"); FindAndInitModuleByClass(FireActionClientClass); wait(); until FireActionClientClass.RequiredMetaTable ~= nil; 
 
-while wait() do 
-    FireActionClientClass.SetReload(true)
-end 
+-- from this point on we can do whatever 
+
+FireActionClientClass.SetReload(true) -- have we reloaded; to true 

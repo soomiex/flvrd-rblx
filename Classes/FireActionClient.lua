@@ -19,3 +19,5 @@ function FireActionClientClass.SetReload(NewValue)
     end
     FireActionClientClass.reloaded = NewValue
 end
+
+return FireActionClientClass
