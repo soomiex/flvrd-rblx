@@ -63,11 +63,9 @@ function FindAndInitModuleByClass(ModuleClass)
 end
 
 for index, _class in pairs(ClassesToRegister) do 
-    repeat print("Finding: " .. _class.ClassName); FindAndInitModuleByClass(FireActionClientClass); wait(); until FireActionClientClass.RequiredMetaTable ~= nil; 
+    repeat print("Finding class"); FindAndInitModuleByClass(FireActionClientClass); wait(); until FireActionClientClass.RequiredMetaTable ~= nil; 
     print("Found!") 
 end 
 print("Finished registering classes.")
 
 -- from this point on we can do whatever 
-
-FireActionClientClass.SetReload(true) -- have we reloaded; to true 

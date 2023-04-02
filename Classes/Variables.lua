@@ -25,6 +25,19 @@ function VariablesClass.Check(TableToCheck)
     return false 
 end
 
+function VariablesClass.UnlockTable() 
+    local NewTable = {} 
+    local NewMeta = {} 
+
+    for i,v in pairs(VariablesClass.RequiredMetaTable) do 
+        NewTable[i] = v 
+    end 
+
+    -- theory: no need to set a new meta, when module is called it returns a frozen table ;this time it won't return a frozen because we overrid it ? 
+
+    VariablesClass.RequiredMetaTable = NewTable -- overrid ?
+end 
+
 function VariablesClass.ChangeValue(IndexString, NewValue) 
     -- todo ; 
 end 
