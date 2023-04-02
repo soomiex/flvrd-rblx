@@ -36,18 +36,26 @@ function FindAndInitModuleByClass(ModuleClass)
                 wrapc(function() 
                     local requiredModule = require(b)
 
-                    local totalOffsetsVerified = 0 
-                    for classIndex, classOffset in pairs(ModuleClass.IndexesInside) do 
-                        if DoesIndexExist(requiredModule, classOffset) then 
-                            totalOffsetsVerified = totalOffsetsVerified + 1
+                    if ModuleClass.Check == nil then 
+                        local totalOffsetsVerified = 0 
+                        for classIndex, classOffset in pairs(ModuleClass.IndexesInside) do 
+                            if DoesIndexExist(requiredModule, classOffset) then 
+                                totalOffsetsVerified = totalOffsetsVerified + 1
+                            end
                         end
-                    end
 
-                    if totalOffsetsVerified == #ModuleClass.IndexesInside then 
-                        ModuleClass.Location = b 
-                        ModuleClass.RequiredMetaTable = requiredModule
-                        HasInitClass = true 
-                    end
+                        if totalOffsetsVerified == #ModuleClass.IndexesInside then 
+                            ModuleClass.Location = b 
+                            ModuleClass.RequiredMetaTable = requiredModule
+                            HasInitClass = true 
+                        end
+                    else -- custom check function implemented 
+                        if ModuleClass.Check(requiredModule) then 
+                            ModuleClass.Location = b 
+                            ModuleClass.RequiredMetaTable = requiredModule
+                            HasInitClass = true 
+                        end 
+                    end 
                 end)
             end
         end
