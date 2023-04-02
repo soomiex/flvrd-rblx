@@ -8,6 +8,7 @@
 
 local VariablesClass = {} 
 
+VariablesClass.ClassName = "VariablesClass"
 VariablesClass.Location = nil 
 VariablesClass.RequiredMetaTable = nil 
 VariablesClass.IndexesInside = {"ChantMoraleDistance", "ChantMoraleFactor", "ContestAntiSpawnRange", "DeathPenaltyGroup"} -- TODO; add more function examples later 

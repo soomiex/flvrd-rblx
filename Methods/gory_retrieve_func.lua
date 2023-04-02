@@ -1,8 +1,12 @@
 -- as of 4/1/2023 "AfterAllScatterClient" only scatters to the following services: 
 local SpottedServices = { "RunService", "TweenService", "TextService", "ContextActionService", "LocalizationService" }
 
-local FireActionClientClass = loadstring(game:HttpGet("https://raw.githubusercontent.com/soomiex/flvrd-rblx/main/Classes/FireActionClient.lua?token=GHSAT0AAAAAACAVDYTMCM5CSDWJEX4TJ6POZBJDAFA"))()
-local VariablesClass = loadstring(game:HttpGet("https://raw.githubusercontent.com/soomiex/flvrd-rblx/main/Classes/Variables.lua?token=GHSAT0AAAAAACAVDYTMWPHTO73SLGKCHAG2ZBJDDBA"))()
+local ClassesToRegister = { }
+local FireActionClientClass = loadstring(game:HttpGet("https://raw.githubusercontent.com/soomiex/flvrd-rblx/main/Classes/FireActionClient.lua"))()
+local VariablesClass = loadstring(game:HttpGet("https://raw.githubusercontent.com/soomiex/flvrd-rblx/main/Classes/Variables.lua"))()
+
+table.insert(ClassesToRegister, FireActionClientClass)
+table.insert(ClassesToRegister, VariablesClass)
 
 function DoesIndexExist(_table, _index) 
     for index, _ in pairs(_table) do 
@@ -42,7 +46,6 @@ function FindAndInitModuleByClass(ModuleClass)
                     if totalOffsetsVerified == #ModuleClass.IndexesInside then 
                         ModuleClass.Location = b 
                         ModuleClass.RequiredMetaTable = requiredModule
-                        print("Verified a class.") 
                         HasInitClass = true 
                     end
                 end)
@@ -51,7 +54,11 @@ function FindAndInitModuleByClass(ModuleClass)
     end
 end
 
-repeat print("finding fireactionclass"); FindAndInitModuleByClass(FireActionClientClass); wait(); until FireActionClientClass.RequiredMetaTable ~= nil; 
+for index, _class in pairs(ClassesToRegister) do 
+    repeat print("Finding: " .. _class.ClassName); FindAndInitModuleByClass(FireActionClientClass); wait(); until FireActionClientClass.RequiredMetaTable ~= nil; 
+    print("Found!") 
+end 
+print("Finished registering classes.")
 
 -- from this point on we can do whatever 
 

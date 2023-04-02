@@ -8,6 +8,7 @@
 
 local FireActionClientClass = {}
 
+FireActionClientClass.ClassName = "FireActionClientClass"
 FireActionClientClass.Location = nil 
 FireActionClientClass.RequiredMetaTable = nil 
 FireActionClientClass.IndexesInside = {"UpdateReticle", "LockedAim", "ReloadTrackStopped", "BeginReload"} -- TODO; add more function examples later 
@@ -17,7 +18,7 @@ function FireActionClientClass.SetReload(NewValue)
         warn("[FireActionClientClass] .RequiredMetaTable has not been initialized.")
         return 
     end
-    FireActionClientClass.reloaded = NewValue
+    FireActionClientClass.RequiredMetaTable.reloaded = NewValue
 end
 
 return FireActionClientClass
