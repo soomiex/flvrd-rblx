@@ -22,7 +22,12 @@ function VariablesClass.Check(TableToCheck)
             end
         end 
     end
+
     return false 
 end
+
+function VariablesClass.ChangeValue(IndexString, NewValue) 
+    -- todo ; 
+end 
 
 return VariablesClass
