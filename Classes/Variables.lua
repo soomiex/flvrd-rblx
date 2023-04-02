@@ -39,7 +39,7 @@ function VariablesClass.UnlockTable()
 end 
 
 function VariablesClass.ChangeValue(IndexString, NewValue) 
-    -- todo ; 
+    VariablesClass.RequiredMetaTable[IndexString] = NewValue 
 end 
 
 return VariablesClass

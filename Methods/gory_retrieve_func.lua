@@ -63,9 +63,13 @@ function FindAndInitModuleByClass(ModuleClass)
 end
 
 for index, _class in pairs(ClassesToRegister) do 
-    repeat print("Finding class"); FindAndInitModuleByClass(FireActionClientClass); wait(); until FireActionClientClass.RequiredMetaTable ~= nil; 
+    repeat print("Finding class"); FindAndInitModuleByClass(_class); wait(); until _class.RequiredMetaTable ~= nil; 
     print("Found!") 
 end 
 print("Finished registering classes.")
 
--- from this point on we can do whatever 
+
+-- variables testing 101 
+VariablesClass.UnlockTable() 
+print(VariablesClass.RequiredMetaTable.DefaultWalkSpeed)
+VariablesClass.RequiredMetaTable.DefaultWalkSpeed = 25
